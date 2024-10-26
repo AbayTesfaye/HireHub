@@ -8,5 +8,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacts',[ContactController::class, "index"]);
-Route::get('/contacts/store',[ContactController::class, "store"]);
+Route::get('/contacts',[ContactController::class, 'index']);

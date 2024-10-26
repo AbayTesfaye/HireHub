@@ -9,11 +9,6 @@ class ContactController extends Controller
 {
     public function index(){
         $contacts = Contact::get();
-      return view('contact.index', compact('contacts'));
-    }
-
-    public function store(){
-        Contact::create(['name'=>"Tola","username"=>"chala"]);
-        return view('welcome');
+        return view('user.index', compact('contacts'));
     }
 }
