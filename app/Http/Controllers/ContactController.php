@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function index(){
-        $contacts = Contact::get('username');
-      return $contacts;
+        $contacts = Contact::get();
+      return view('contact.index', compact('contacts'));
+    }
+
+    public function store(){
+        Contact::create(['name'=>"Tola","username"=>"chala"]);
+        return view('welcome');
     }
 }

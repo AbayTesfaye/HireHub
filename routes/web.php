@@ -9,3 +9,4 @@ Route::get('/', function () {
 });
 
 Route::get('/contacts',[ContactController::class, "index"]);
+Route::get('/contacts/store',[ContactController::class, "store"]);
