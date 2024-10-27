@@ -8,4 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacts',[ContactController::class, 'index']);
+Route::get('/about', function(){
+    return view('users.index');
+});
