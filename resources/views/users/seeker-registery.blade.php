@@ -9,8 +9,10 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Register</div>
-                <div class="card-body">
+            <div class="card-header">Register</div>
+            <form action="{{ route('storeSeeker') }}" method="POST">
+                @csrf
+                 <div class="card-body">
                     <div class="form-group">
                         <label for="" >Full Name</label>
                         <input type="text" class="form-control" name="name">
@@ -27,7 +29,8 @@
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
-                </div>
+                 </div>
+            </form>
             </div>
         </div>
     </div>

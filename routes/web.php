@@ -6,4 +6,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/seeker-registery',[UserController::class, 'createSeeker']);
+Route::get('/seeker-registery',[UserController::class, 'createSeeker'])->name('createSeeker');
+Route::post('/seeker-registery',[UserController::class, 'storeSeeker'])->name('storeSeeker');
