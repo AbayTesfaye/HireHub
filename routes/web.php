@@ -14,4 +14,6 @@ Route::post('/seeker-registery',[UserController::class, 'storeSeeker'])->name('s
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('/login',[UserController::class,'postLogin'])->name('postLogin');
 
+Route::post('/logout',[UserController::class,'logout'])->name('logout');
+
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');

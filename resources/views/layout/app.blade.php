@@ -19,19 +19,36 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="{{route('login')}}">Login</a>
               </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Job Employer</a>
+                </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
+                <a class="nav-link" id="logout" href="#">Logout</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Job Employer</a>
-              </li>
+              <form id="form-logout" action="{{route('logout')}}" method="post">@csrf</form>
             </ul>
           </div>
         </div>
       </nav>
     @yield('content')
+
+
+    <script>
+        let logout = document.getElementById('logout'); // Fix typo
+        let form = document.getElementById('form-logout'); // Fix typo
+        logout.addEventListener('click', function(event){ // Fix typo
+            event.preventDefault(); // Prevent default action
+            form.submit(); // Submit the form
+        });
+    </script>
   </body>
 </html>

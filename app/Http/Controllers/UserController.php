@@ -40,6 +40,13 @@ class UserController extends Controller
     if(Auth::attempt($credantials)){
         return redirect()->intended('dashboard');
     }
+
+    return "Wrong email or Password";
+ }
+
+ public function logout(){
+    Auth::logout();
+    return redirect()->route('login');
  }
 
 }
