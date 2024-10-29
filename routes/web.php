@@ -19,4 +19,7 @@ Route::post('/login',[UserController::class,'postLogin'])->name('postLogin');
 
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
-Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth','verified');
+
+
+Route::get('/verify',[DashboardController::class, 'verify'])->name('verification.notice');
