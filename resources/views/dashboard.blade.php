@@ -1,9 +1,11 @@
 @extends('layout.app')
 @section('content')
     <div class="container mt-s">
+        Hello, {{auth()->User()->name}}
+        @if (Auth::check() && auth()->user()->user_type == 'Employer')
+        <p>Your trial will be expire on {{auth()->user()->user_trial}}</p>
+        @endif
         <div class="row justify-content-center ">
-          Hello, {{auth()->User()->name}}
-           <p>Your trial will be expire on {{auth()->user()->user_trial}}</p>
            <div class="col-md-3">
             <div class="card-counter primary">
                 <p class="text-center mt-3 lead">User Profile</p>
