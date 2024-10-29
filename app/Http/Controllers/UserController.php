@@ -24,6 +24,7 @@ class UserController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password')), // Use bcrypt to hash the password
             'user_type' => "Seeker",
+
         ]);
 
         return redirect()->route('login')->with('successMessage','Your account was created!');
@@ -35,6 +36,7 @@ class UserController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password')), // Use bcrypt to hash the password
             'user_type' => "Employer",
+            'user_trail' => now()->addWeek(),
         ]);
 
         return redirect()->route('login')->with('successMessage','Your account was created!');
