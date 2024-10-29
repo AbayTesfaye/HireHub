@@ -10,6 +10,8 @@ class UserController extends Controller
     public function createSeeker(){
         return view('users.seeker-registery');
     }
+
+
     public function storeSeeker(SeekerRegistrationRequest $request){
         User::create([
             'name' => request('name'),
@@ -20,4 +22,9 @@ class UserController extends Controller
 
         return back();
     }
+
+   // login user
+   public function login(){
+    return view('users.login');
+   }
 }

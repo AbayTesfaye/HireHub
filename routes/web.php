@@ -8,3 +8,5 @@ Route::get('/', function () {
 
 Route::get('/seeker-registery',[UserController::class, 'createSeeker'])->name('createSeeker');
 Route::post('/seeker-registery',[UserController::class, 'storeSeeker'])->name('storeSeeker');
+
+Route::get('/login',[UserController::class,'login'])->name('login');
