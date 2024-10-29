@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
             <div class="card-header">Login</div>
-            <form action="#" method="POST">
+            <form action="{{route('postLogin')}}" method="POST">
                 @csrf
                  <div class="card-body">
                     <div class="form-group">

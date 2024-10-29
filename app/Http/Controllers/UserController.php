@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\SeekerRegistrationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -23,8 +25,21 @@ class UserController extends Controller
         return back();
     }
 
-   // login user
-   public function login(){
-    return view('users.login');
+      // login user
+     public function login(){
+       return view('users.login');
    }
+
+   public function postLogin(Request $request){
+    $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required']
+    ]);
+
+    $credantials = $request->only('email','password');
+    if(Auth::attempt($credantials)){
+        return redirect()->intended('dashboard');
+    }
+ }
+
 }
