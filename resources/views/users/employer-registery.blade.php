@@ -8,7 +8,10 @@
             <img src={{asset('image/click-here.jpg')}} alt="">
         </div>
         <div class="col-md-6">
-            <div class="card">
+            @if (Session::has('successMessage'))
+                  <div class="alert alert-success">{{Session::get('successMessage')}}</div>
+            @endif
+            <div class="card shadow-lg">
             <div class="card-header">Employer Registration</div>
             <form action="#" method="POST">
                 @csrf

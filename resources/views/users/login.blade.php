@@ -3,6 +3,7 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+          @include('message')
             <div class="card">
             <div class="card-header">Login</div>
             <form action="{{route('postLogin')}}" method="POST">

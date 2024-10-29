@@ -8,7 +8,7 @@
             <img src={{asset('image/click-here.jpg')}} alt="">
         </div>
         <div class="col-md-6">
-            <div class="card">
+            <div class="card shadow-lg">
             <div class="card-header">Register</div>
             <form action="{{ route('store.seeker') }}" method="POST">
                 @csrf

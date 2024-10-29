@@ -26,7 +26,18 @@ class UserController extends Controller
             'user_type' => "Seeker",
         ]);
 
-        return back();
+        return redirect()->route('login')->with('successMessage','Your account was created!');
+    }
+
+    public function storeEmployer(SeekerRegistrationRequest $request){
+        User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt(request('password')), // Use bcrypt to hash the password
+            'user_type' => "Employer",
+        ]);
+
+        return redirect()->route('login')->with('successMessage','Your account was created!');
     }
 
       // login user
