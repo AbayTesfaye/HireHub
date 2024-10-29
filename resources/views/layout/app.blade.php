@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{{route('create.seeker')}}">Job Seeker</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Job Employer</a>
+                    <a class="nav-link" href="{{route('create.employer')}}">Job Employer</a>
                 </li>
             @endif
 
@@ -50,7 +50,7 @@
         let form = document.getElementById('form-logout');
         logout.addEventListener('click', function(event){
             event.preventDefault();
-            form.submit(); 
+            form.submit();
         });
     </script>
   </body>

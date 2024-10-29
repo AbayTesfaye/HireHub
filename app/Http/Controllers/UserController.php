@@ -13,6 +13,10 @@ class UserController extends Controller
         return view('users.seeker-registery');
     }
 
+    public function createEmployer(){
+        return view('users.employer-registery');
+    }
+
 
     public function storeSeeker(SeekerRegistrationRequest $request){
         User::create([
