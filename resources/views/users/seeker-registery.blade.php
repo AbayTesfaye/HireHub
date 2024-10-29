@@ -16,14 +16,26 @@
                     <div class="form-group">
                         <label for="" >Full Name</label>
                         <input type="text" class="form-control" name="name">
+                        @if ($errors->has('name'))
+                         <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
+
                     </div>
                     <div class="form-group">
                         <label for="" >Email</label>
                         <input type="text" class="form-control" name="email">
+                        @if ($errors->has('email'))
+                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                        @endif
+
                     </div>
                     <div class="form-group">
                         <label for="" >Password</label>
                         <input type="text" class="form-control" name="password">
+                        @if ($errors->has('password'))
+                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                        @endif
+
                     </div>
                     <br>
                     <div class="form-group">
