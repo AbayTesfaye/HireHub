@@ -46,11 +46,11 @@
 
 
     <script>
-        let logout = document.getElementById('logout'); // Fix typo
-        let form = document.getElementById('form-logout'); // Fix typo
-        logout.addEventListener('click', function(event){ // Fix typo
-            event.preventDefault(); // Prevent default action
-            form.submit(); // Submit the form
+        let logout = document.getElementById('logout');
+        let form = document.getElementById('form-logout');
+        logout.addEventListener('click', function(event){
+            event.preventDefault();
+            form.submit(); 
         });
     </script>
   </body>
