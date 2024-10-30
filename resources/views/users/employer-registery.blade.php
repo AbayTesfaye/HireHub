@@ -47,4 +47,14 @@
         </div>
     </div>
   </div>
+
+  <script>
+    var url = '{{route('store.employer')}}';
+    document.getElementById('btnRegister').addEventListner('click', function(event){
+        var form = document.getElementById('registrationForm');
+        var formData = new formData(form);
+        var button = event.target;
+        button.disabled = true;
+    })
+  </script>
 @endsection
