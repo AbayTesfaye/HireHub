@@ -19,7 +19,7 @@ class UserController extends Controller
 
 
     public function storeSeeker(SeekerRegistrationRequest $request){
-        User::create([
+       $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
             'password' => bcrypt(request('password')), // Use bcrypt to hash the password
@@ -27,17 +27,21 @@ class UserController extends Controller
 
         ]);
 
+        $user->sendEmailVerificationNotification();
+
         return redirect()->route('login')->with('successMessage','Your account was created!');
     }
 
     public function storeEmployer(SeekerRegistrationRequest $request){
-        User::create([
+       $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
             'password' => bcrypt(request('password')), // Use bcrypt to hash the password
             'user_type' => "Employer",
             'user_trial' => now()->addWeek(),
         ]);
+
+        $user->sendEmailVerificationNotification();
 
         return redirect()->route('login')->with('successMessage','Your account was created!');
     }
