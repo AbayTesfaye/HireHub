@@ -33,3 +33,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+
+
+Route::get('/resend/verification/email',[DashboardController::class, 'resend'])->name('resend.email');
