@@ -30,6 +30,6 @@ Route::get('/verify',[DashboardController::class, 'verify'])->name('verification
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    return redirect('/home');
+    return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
