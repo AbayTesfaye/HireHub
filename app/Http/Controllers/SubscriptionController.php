@@ -9,4 +9,8 @@ class SubscriptionController extends Controller
     public function subscribe(){
         return view('subscription.index');
     }
+
+    public function initiatePayement(){
+        dd('okay');
+    }
 }

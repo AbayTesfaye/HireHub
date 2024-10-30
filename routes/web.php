@@ -39,4 +39,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/resend/verification/email',[DashboardController::class, 'resend'])->name('resend.email');
 
 
-Route::get('/subscribe',[SubscriptionController::class, 'subscribe']);
+Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->middleware('auth');
+
+Route::get('pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware('auth');
+Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware('auth');
+Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware('auth');

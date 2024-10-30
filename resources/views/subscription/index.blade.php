@@ -14,8 +14,8 @@
                         <li class="list-group-item">Dapibus ac facilisis in</li>
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">
+                    <div class="card-body text-end">
+                        <a href="{{ route('pay.weekly') }}" class="card-link">
                             <button class="btn btn-success">Pay</button>
                         </a>
                     </div>
@@ -33,8 +33,8 @@
                         <li class="list-group-item">Dapibus ac facilisis in</li>
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">
+                    <div class="card-body text-end">
+                        <a href="{{ route('pay.monthly') }}" class="card-link">
                             <button class="btn btn-success">Pay</button>
                         </a>
                     </div>
@@ -52,8 +52,8 @@
                         <li class="list-group-item">Dapibus ac facilisis in</li>
                         <li class="list-group-item">Vestibulum at eros</li>
                     </ul>
-                    <div class="card-body">
-                        <a href="#" class="card-link">
+                    <div class="card-body text-end">
+                        <a href="{{ route('pay.yearly') }}" class="card-link">
                             <button class="btn btn-success">Pay</button>
                         </a>
                     </div>
