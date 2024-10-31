@@ -45,3 +45,7 @@ Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->middlewar
 Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware(['auth',isEmployer::class]);
 Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware(['auth',isEmployer::class]);
 Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware(['auth',isEmployer::class]);
+
+
+Route::get('payment/sucess',[SubscriptionController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('payment/cancel',[SubscriptionController::class, 'cancel'])->name('payment.cancel');
