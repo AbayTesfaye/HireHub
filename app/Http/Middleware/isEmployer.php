@@ -15,6 +15,11 @@ class isEmployer
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if($request->user()->user_type == 'Employer'){
+            return $next($request);
+        }else {
+            abort(401);
+        }
+
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\isEmployer;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -39,8 +40,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/resend/verification/email',[DashboardController::class, 'resend'])->name('resend.email');
 
 
-Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->middleware('auth');
+Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->middleware(['auth',isEmployer::class]);
 
-Route::get('pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware('auth');
+Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware('auth');
 Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware('auth');
 Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware('auth');
