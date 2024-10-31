@@ -42,6 +42,6 @@ Route::get('/resend/verification/email',[DashboardController::class, 'resend'])-
 
 Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->middleware(['auth',isEmployer::class]);
 
-Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware('auth');
-Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware('auth');
-Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware('auth');
+Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware(['auth',isEmployer::class]);
+Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware(['auth',isEmployer::class]);
+Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware(['auth',isEmployer::class]);
