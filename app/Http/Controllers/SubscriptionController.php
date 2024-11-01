@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
 class SubscriptionController extends Controller
@@ -21,21 +22,21 @@ class SubscriptionController extends Controller
             'weekly' => [
                 'name' => 'weekly',
                 'discription' => 'weekly payment',
-                'ammount' => self::WEEKLY_AMOUNT,
+                'amount' => self::WEEKLY_AMOUNT,
                 'currency'=> self::CURRENCY,
                 'quantity' => 1,
             ],
             'monthly' => [
                 'name' => 'monthly',
                 'discription' => 'monthly payment',
-                'ammount' => self::MONTHLY_AMOUNT,
+                'amount' => self::MONTHLY_AMOUNT,
                 'currency'=> self::CURRENCY,
                 'quantity' => 1,
             ],
             'yearly' => [
                 'name' => 'yearly',
                 'discription' => 'yearly payment',
-                'ammount' => self::YEARLY_AMOUNT,
+                'amount' => self::YEARLY_AMOUNT,
                 'currency'=> self::CURRENCY,
                 'quantity' => 1,
             ]
@@ -55,6 +56,19 @@ class SubscriptionController extends Controller
           }elseif($request->is('pay/yearly')){
             $selectPlan = $plans['yearly'];
             $billingEnds = now()->addYear()->startOfDay()->toDateString();
+          }
+
+          if($selectPlan){
+            $session = Session::create([
+                'payment_method_types'=> ['card'],
+                'line_items' => [
+                    'name' => $selectPlan['name'],
+                    'discription' => $selectPlan['discription'],
+                    'amount' => $selectPlan['amount'] * 100,
+                    'currency' => $selectPlan['currency'],
+                    'quantity' => $selectPlan['quantity'],
+                    ]
+            ]);
           }
       } catch(\Exception $e){
 
