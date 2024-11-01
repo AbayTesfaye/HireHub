@@ -16,7 +16,7 @@ class SubscriptionController extends Controller
         return view('subscription.index');
     }
 
-    public function initiatePayement(){
+    public function initiatePayement(Request $request){
         $plans = [
             'weekly' => [
                 'name' => 'weekly',
@@ -45,7 +45,17 @@ class SubscriptionController extends Controller
         Stripe::setApikey(config('services.stripe.secret'));
         // initiate payment
       try{
-
+          $selectPlan = null;
+          if($request->is('pay/weekly')){
+            $selectPlan = $plans['weekly'];
+            $billingEnds = now()->addWeek()->startOfDay()->toDateString();
+          } elseif($request->is('pay/monthly')){
+            $selectPlan = $plans['monthly'];
+            $billingEnds = now()->addMonth()->startOfDay()->toDateString();
+          }elseif($request->is('pay/yearly')){
+            $selectPlan = $plans['yearly'];
+            $billingEnds = now()->addYear()->startOfDay()->toDateString();
+          }
       } catch(\Exception $e){
 
       }
