@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stripe\Stripe;
 
 class SubscriptionController extends Controller
 {
@@ -40,6 +41,8 @@ class SubscriptionController extends Controller
             ]
         ];
 
+
+        Stripe::setApikey(config('services.stripe.secret'));
         // initiate payment
       try{
 
