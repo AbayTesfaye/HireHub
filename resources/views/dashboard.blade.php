@@ -2,9 +2,11 @@
 @section('content')
     <div class="container mt-s">
         Hello, {{ auth()->User()->name }}
-        @if (Auth::check() && auth()->user()->user_type == 'Employer')
-            <p>Your trial {{ now()->format('Y-m-d') > auth()->user()->user_trial ? 'was expired' : 'will expire' }} on
-                {{ auth()->user()->user_trial }}</p>
+        @if (!auth()->user()->billing_ends)
+            @if (Auth::check() && auth()->user()->user_type == 'Employer')
+                <p>Your trial {{ now()->format('Y-m-d') > auth()->user()->user_trial ? 'was expired' : 'will expire' }} on
+                    {{ auth()->user()->user_trial }}</p>
+            @endif
         @endif
         <div class="row justify-content-center ">
             @if (Session::has('success'))
