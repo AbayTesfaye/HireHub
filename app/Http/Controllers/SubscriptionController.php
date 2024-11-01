@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
 class SubscriptionController extends Controller
 {
-    const WEEKLY_AMOUNT = "20$";
-    const MONTHLY_AMOUNT = "80$";
-    const YEARLY_AMOUNT = "200$";
+    const WEEKLY_AMOUNT = 20;
+    const MONTHLY_AMOUNT = 80;
+    const YEARLY_AMOUNT = 200;
     const CURRENCY = 'USD';
 
     public function subscribe(){
@@ -21,27 +22,26 @@ class SubscriptionController extends Controller
         $plans = [
             'weekly' => [
                 'name' => 'weekly',
-                'discription' => 'weekly payment',
+                'description' => 'weekly payment', // Corrected typo
                 'amount' => self::WEEKLY_AMOUNT,
                 'currency'=> self::CURRENCY,
                 'quantity' => 1,
             ],
             'monthly' => [
                 'name' => 'monthly',
-                'discription' => 'monthly payment',
+                'description' => 'monthly payment', // Corrected typo
                 'amount' => self::MONTHLY_AMOUNT,
                 'currency'=> self::CURRENCY,
                 'quantity' => 1,
             ],
             'yearly' => [
                 'name' => 'yearly',
-                'discription' => 'yearly payment',
+                'description' => 'yearly payment', // Corrected typo
                 'amount' => self::YEARLY_AMOUNT,
                 'currency'=> self::CURRENCY,
                 'quantity' => 1,
             ]
         ];
-
 
         Stripe::setApikey(config('services.stripe.secret'));
         // initiate payment
@@ -59,19 +59,33 @@ class SubscriptionController extends Controller
           }
 
           if($selectPlan){
-            $session = Session::create([
-                'payment_method_types'=> ['card'],
-                'line_items' => [
-                    'name' => $selectPlan['name'],
-                    'discription' => $selectPlan['discription'],
-                    'amount' => $selectPlan['amount'] * 100,
-                    'currency' => $selectPlan['currency'],
-                    'quantity' => $selectPlan['quantity'],
-                    ]
+            $successURL = URL::signedRoute('payment.success',[
+                'plan' => $selectPlan['name'],
+                'billing_ends' => $billingEnds,
             ]);
+            $session = Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [
+                    [
+                        'price_data' => [
+                            'currency' => $selectPlan['currency'],
+                            'unit_amount' => $selectPlan['amount'] * 100,
+                            'product_data' => [
+                                'name' => $selectPlan['name'],
+                                'description' => $selectPlan['description'],
+                            ],
+                        ],
+                        'quantity' => $selectPlan['quantity'],
+                    ],
+                ],
+                'mode' => 'payment',
+                'success_url' => $successURL,
+                'cancel_url' => route('payment.cancel'),
+            ]);
+            dd($session);
           }
       } catch(\Exception $e){
-
+          return $e;
       }
     }
 
