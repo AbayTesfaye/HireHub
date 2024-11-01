@@ -15,6 +15,9 @@ class DonotAllowUserToMakePayment
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if($request->user()->billing_ends){
+            return redirect()->route('dashboard')->with('error','Your are paid member');
+        }
         return $next($request);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\DonotAllowUserToMakePayment;
 use App\Http\Middleware\isEmployer;
 use App\Http\Middleware\isPremiumUser;
 use Illuminate\Support\Facades\Route;
@@ -42,11 +43,11 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/resend/verification/email',[DashboardController::class, 'resend'])->name('resend.email');
 
 
-Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->name('subscribe')->middleware(['auth',isEmployer::class]);
+Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->name('subscribe')->middleware(['auth',isEmployer::class,DonotAllowUserToMakePayment::class]);
 
-Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware(['auth',isEmployer::class]);
-Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware(['auth',isEmployer::class]);
-Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware(['auth',isEmployer::class]);
+Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware(['auth',isEmployer::class,DonotAllowUserToMakePayment::class]);
+Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware(['auth',isEmployer::class,DonotAllowUserToMakePayment::class]);
+Route::get('pay/yearly',[SubscriptionController::class, 'initiatePayement'])->name('pay.yearly')->middleware(['auth',isEmployer::class,DonotAllowUserToMakePayment::class]);
 
 
 Route::get('payment/sucess',[SubscriptionController::class, 'paymentSuccess'])->name('payment.success');
