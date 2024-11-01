@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Stripe\Checkout\Session;
@@ -63,6 +64,7 @@ class SubscriptionController extends Controller
                 'plan' => $selectPlan['name'],
                 'billing_ends' => $billingEnds,
             ]);
+
             $session = Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [
@@ -85,14 +87,24 @@ class SubscriptionController extends Controller
             return redirect($session->url);
           }
       } catch(\Exception $e){
-          return $e;
+          return response()->json($e);
       }
     }
 
-    public function paymentSuccess(){
+    public function paymentSuccess(Request $request){
         // update db
+        $plan = $request->plan;
+        $billingEnds = $request->billing_ends;
+
+       // Update the user in the database
+       User::where('id', auth()->user()->id)->update([
+        'plan' => $plan,
+        'billing_ends' => $billingEnds,
+        'status' => 'paid',
+     ]);
+        return redirect()->route('dashboard')->with('success','payment was successfully processed');
     }
     public function cancel(){
-        // redirect
+        return redirect()->route('dashboard')->with('error','payment was unsuccessful');
     }
 }
