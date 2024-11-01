@@ -40,7 +40,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/resend/verification/email',[DashboardController::class, 'resend'])->name('resend.email');
 
 
-Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->middleware(['auth',isEmployer::class]);
+Route::get('/subscribe',[SubscriptionController::class, 'subscribe'])->name('subscribe')->middleware(['auth',isEmployer::class]);
 
 Route::get('/pay/weekly',[SubscriptionController::class, 'initiatePayement'])->name('pay.weekly')->middleware(['auth',isEmployer::class]);
 Route::get('pay/monthly',[SubscriptionController::class, 'initiatePayement'])->name('pay.monthly')->middleware(['auth',isEmployer::class]);
