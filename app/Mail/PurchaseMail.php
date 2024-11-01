@@ -16,9 +16,13 @@ class PurchaseMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $plan;
+    public $billingEnds;
+
+    public function __construct($plan, $billingEnds)
     {
-        //
+        $this->plan = $plan;
+        $this->billingEnds = $billingEnds;
     }
 
     /**
@@ -27,7 +31,7 @@ class PurchaseMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Purchase Mail',
+            subject: 'Purchase Confirmation',
         );
     }
 
@@ -37,7 +41,7 @@ class PurchaseMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            markdown: 'email.notify',
         );
     }
 
