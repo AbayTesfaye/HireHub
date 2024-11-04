@@ -55,8 +55,6 @@
         </div>
     </nav>
     @yield('content')
-
-
     <script>
         let logout = document.getElementById('logout');
         let form = document.getElementById('form-logout');

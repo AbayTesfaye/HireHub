@@ -23,8 +23,20 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#!">Logout</a></li>
+                <li>
+                    <a class="dropdown-item" href="#" id="logout">Logout</a>
+                    <form id="form-logout" action="{{ route('logout') }}" method="post">@csrf
+                    </form>
+                </li>
             </ul>
         </li>
     </ul>
 </nav>
+<script>
+    let logout = document.getElementById('logout');
+    let form = document.getElementById('form-logout');
+    logout.addEventListener('click', function(event) {
+        event.preventDefault();
+        form.submit();
+    });
+</script>
