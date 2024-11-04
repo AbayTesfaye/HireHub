@@ -17,11 +17,11 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" class="form-control" name="description"></textarea>
+                        <textarea id="description" class="form-control summernote" name="description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="roles">Roles and Responsibility</label>
-                        <textarea id="roles" class="form-control" name="roles"></textarea>
+                        <textarea id="roles" class="form-control summernote" name="roles"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Job Types</label>
