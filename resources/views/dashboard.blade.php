@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.admin.main')
 @section('content')
     <div class="container mt-s">
         Hello, {{ auth()->User()->name }}
