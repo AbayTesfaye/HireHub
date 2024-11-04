@@ -13,7 +13,7 @@ class PostJobController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required|min:5',
-            'feature_image' => 'required|mimes:png,jpg,jpeg',
+            'feature_image' => 'required|mimes:png,jpg,jpeg|max:2048',
             'description'=>'required|min:10',
             'roles'=>'required|min:10',
             'address' => 'required',
