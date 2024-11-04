@@ -57,4 +57,9 @@
             </div>
         </div>
     </div>
+    <style>
+        .note-insert {
+            display: none !important;
+        }
+    </style>
 @endsection
