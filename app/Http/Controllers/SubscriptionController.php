@@ -94,7 +94,7 @@ class SubscriptionController extends Controller
     }
 
     public function paymentSuccess(Request $request){
-        // update db
+ 
         $plan = $request->plan;
         $billingEnds = $request->billing_ends;
 
