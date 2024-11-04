@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\DonotAllowUserToMakePayment;
+use App\Http\Middleware\isEmployer;
 use App\Mail\PurchaseMail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,6 +18,10 @@ class SubscriptionController extends Controller
     const MONTHLY_AMOUNT = 80;
     const YEARLY_AMOUNT = 200;
     const CURRENCY = 'USD';
+
+    protected $except = [
+        'subscribe',
+    ];
 
     public function subscribe(){
         return view('subscription.index');
@@ -94,7 +100,7 @@ class SubscriptionController extends Controller
     }
 
     public function paymentSuccess(Request $request){
- 
+
         $plan = $request->plan;
         $billingEnds = $request->billing_ends;
 

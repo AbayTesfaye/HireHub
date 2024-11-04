@@ -35,13 +35,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('create.seeker') }}">Job Seeker</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('create.employer') }}">Job Employer</a>
-                        </li>
                     @endif
 
                     @if (Auth::check())
