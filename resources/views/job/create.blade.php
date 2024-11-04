@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Application Close Date</label>
-                        <input type="date" id="date" class="form-control" name="date">
+                        <input id="datepicker" class="form-control" name="date">
                     </div>
                     <div class="form-group mt-4">
                         <button class="btn btn-success" type="submit">Post a Job</button>
