@@ -8,6 +8,10 @@
                 <form action="" method="POST">
                     @csrf
                     <div class="form-group">
+                        <label for="featureImage">Feature Image</label>
+                        <input type="file" id="featureImage" class="form-control" name="featureImage">
+                    </div>
+                    <div class="form-group">
                         <label for="title">Title</label>
                         <input id="title" class="form-control" name="title">
                     </div>
