@@ -5,7 +5,8 @@
     <div id="layoutSidenav">
         @include('layout.admin.sidebar')
         <div id="layoutSidenav_content">
-            @include('layout.admin.body')
+            {{-- @include('layout.admin.body') --}}
+            @yield('content')
             @include('layout.admin.footer')
         </div>
     </div>
