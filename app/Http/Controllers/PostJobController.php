@@ -11,12 +11,15 @@ use Illuminate\Support\Str;
 
 class PostJobController extends Controller
 {
+
     public function create(){
       return view('job.create');
     }
 
     public function index(){
-        return view('job.index');
+        $jobs = Listing::where('user_id',auth()->user()->id)->get();
+
+        return view('job.index', compact('jobs'));
     }
 
     public function store(Request $request){
