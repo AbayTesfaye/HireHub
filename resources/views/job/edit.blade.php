@@ -8,7 +8,7 @@
                 @if (Session::has('success'))
                     <div class="alert alert-success">{{ Session::get('success') }}</div>
                 @endif
-                <form action="{{ route('job.edit', [$listing->id]) }}" enctype="multipart/form-data">
+                <form action="{{ route('job.update', [$listing->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">

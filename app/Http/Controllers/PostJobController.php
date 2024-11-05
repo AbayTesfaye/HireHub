@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\JobPostEditRequest;
+use App\Http\Requests\JobEditFormRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,13 +47,24 @@ class PostJobController extends Controller
     }
 
 
-    public function update($id, JobPostEditRequest $request) {
-        if($request->hasFile('feature_image')){
-            $featureImage = $request->file('feature_image')->store('images','public');
-            Listing::find($id)->update(['feature_image'=> $featureImage]);
-        }
-        Listing::find($id)->update($request->except('feature_image'));
+    public function update($id, JobEditFormRequest $request) {
+        // Find the job listing or fail
+        $listing = Listing::findOrFail($id);
 
-        return back()->with('success','Your job post has been successfully Updated');
+        // Check if a new feature image is uploaded and update it
+        if ($request->hasFile('feature_image')) {
+            $featureImage = $request->file('feature_image')->store('images', 'public');
+            $listing->feature_image = $featureImage;
+        }
+
+        // Update the rest of the fields (except feature_image)
+        $listing->fill($request->except('feature_image'));
+
+        // Save the updated listing
+        $listing->save();
+
+        // Return back with a success message
+        return back()->with('success', 'Your job post has been successfully updated');
     }
+
 }
