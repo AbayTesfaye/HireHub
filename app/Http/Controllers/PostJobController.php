@@ -40,4 +40,8 @@ class PostJobController extends Controller
         $post->save();
         return back();
     }
+
+    public function edit(Listing $listing){
+        return view('job.edit',compact('listing'));
+    }
 }
