@@ -4,9 +4,13 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1>Post a Job</h1>
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <h1>Update a Job</h1>
+                @if (Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
+                <form action="{{ route('job.edit', [$listing->id]) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="feature_image">Feature Image</label>
                         <input type="file" id="feature_image" class="form-control" name="feature_image">
@@ -86,7 +90,7 @@
                         @endif
                     </div>
                     <div class="form-group mt-4">
-                        <button class="btn btn-success" type="submit">Post a Job</button>
+                        <button class="btn btn-success" type="submit">Update a Job</button>
                     </div>
                 </form>
             </div>
