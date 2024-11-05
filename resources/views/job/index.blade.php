@@ -31,7 +31,7 @@
                                 <tr>
                                     <td>{{ $job->title }}</td>
                                     <td>{{ $job->created_at->format('Y-m-d') }}</td>
-                                    <td>Edit</td>
+                                    <td><a href="{{ route('job.edit', [$job->id]) }}">Edit</a></td>
                                     <td>Delete</td>
                                 </tr>
                             @endforeach
