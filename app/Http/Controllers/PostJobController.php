@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobPostEditRequest;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,16 @@ class PostJobController extends Controller
 
     public function edit(Listing $listing){
         return view('job.edit',compact('listing'));
+    }
+
+
+    public function update($id, JobPostEditRequest $request) {
+        if($request->hasFile('feature_image')){
+            $featureImage = $request->file('feature_image')->store('images','public');
+            Listing::find($id)->update(['feature_image'=> $featureImage]);
+        }
+        Listing::find($id)->update($request->except('feature_image'));
+
+        return back()->with('success','Your job post has been successfully Updated');
     }
 }
