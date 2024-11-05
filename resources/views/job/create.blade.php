@@ -5,11 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h1>Post a Job</h1>
-                <form action="{{ route('job.store') }}" method="POST">
+                <form action="{{ route('job.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="featureImage">Feature Image</label>
-                        <input type="file" id="featureImage" class="form-control" name="featureImage">
+                        <label for="feature_image">Feature Image</label>
+                        <input type="file" id="feature_image" class="form-control" name="feature_image">
                         @if ($errors->has('feature_image'))
                             <div class="errors">{{ $errors->first('feature_image') }}</div>
                         @endif
@@ -62,6 +62,13 @@
                         <input id="address" class="form-control" name="address">
                         @if ($errors->has('address'))
                             <div class="errors">{{ $errors->first('address') }}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input id="salary" class="form-control" name="salary">
+                        @if ($errors->has('salary'))
+                            <div class="errors">{{ $errors->first('salary') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
