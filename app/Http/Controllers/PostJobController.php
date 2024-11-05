@@ -74,4 +74,7 @@ class PostJobController extends Controller
         return back()->with('success', 'Your job post has been successfully updated');
     }
 
+     public function delete($id){
+
+     }
 }
