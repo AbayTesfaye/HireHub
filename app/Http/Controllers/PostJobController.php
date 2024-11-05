@@ -15,6 +15,10 @@ class PostJobController extends Controller
       return view('job.create');
     }
 
+    public function index(){
+        return view('job.index');
+    }
+
     public function store(Request $request){
         $request->validate([
             'title' => 'required|min:5',

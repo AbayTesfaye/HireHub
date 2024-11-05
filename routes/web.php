@@ -57,3 +57,4 @@ Route::get('job/create', [PostJobController::class, 'create'])->name('job.create
 Route::post('job/store', [PostJobController::class, 'store'])->name('job.store')->middleware(isPremiumUser::class);
 Route::get('job/{listing}/edit', [PostJobController::class, 'edit'])->name('job.edit')->middleware(isPremiumUser::class);
 Route::put('job/{id}/update', [PostJobController::class, 'update'])->name('job.update')->middleware(isPremiumUser::class);
+Route::get('job', [PostJobController::class, 'index'])->name('job.index')->middleware(isPremiumUser::class);

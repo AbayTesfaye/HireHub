@@ -18,7 +18,7 @@
                     data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('job.create') }}">Create job</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Your job</a>
+                        <a class="nav-link" href="{{ route('job.index') }}">Your job</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
