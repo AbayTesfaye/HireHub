@@ -78,4 +78,11 @@ class UserController extends Controller
     return redirect()->route('login');
  }
 
+ public function profile(){
+    return view('profile.index');
+ }
+
+ public function update(){
+
+ }
 }

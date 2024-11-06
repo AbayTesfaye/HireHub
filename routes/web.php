@@ -23,12 +23,12 @@ Route::post('/employer-registery',[UserController::class, 'storeEmployer'])->nam
 
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::post('/login',[UserController::class,'postLogin'])->name('postLogin');
-
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
+Route::get('user/profile',[UserController::class, 'profile'])->name('user.profile')->middleware('auth');
+Route::post('user/profile',[UserController::class, 'update'])->name('user.update.profile')->middleware('auth');
+
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth','verified');
-
-
 Route::get('/verify',[DashboardController::class, 'verify'])->name('verification.notice');
 
 
@@ -55,7 +55,7 @@ Route::get('payment/cancel',[SubscriptionController::class, 'cancel'])->name('pa
 
 Route::get('job/create', [PostJobController::class, 'create'])->name('job.create')->middleware(isPremiumUser::class);
 Route::post('job/store', [PostJobController::class, 'store'])->name('job.store')->middleware(isPremiumUser::class);
-Route::get('job/{listing}/edit', [PostJobController::class, 'edit'])->name('job.edit')->middleware(isPremiumUser::class);
-Route::put('job/{id}/update', [PostJobController::class, 'update'])->name('job.update')->middleware(isPremiumUser::class);
-Route::get('job', [PostJobController::class, 'index'])->name('job.index')->middleware(isPremiumUser::class);
-Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('job.delete')->middleware(isPremiumUser::class);
+Route::get('job/{listing}/edit', [PostJobController::class, 'edit'])->name('job.edit');
+Route::put('job/{id}/update', [PostJobController::class, 'update'])->name('job.update');
+Route::get('job', [PostJobController::class, 'index'])->name('job.index');
+Route::delete('job/{id}/delete', [PostJobController::class, 'delete'])->name('job.delete');
