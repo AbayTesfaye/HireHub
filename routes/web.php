@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostJobController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AuthCheck;
 use App\Http\Middleware\DonotAllowUserToMakePayment;
 use App\Http\Middleware\isEmployer;
 use App\Http\Middleware\isPremiumUser;
@@ -15,13 +16,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/seeker-registery',[UserController::class, 'createSeeker'])->name('create.seeker');
+Route::get('/seeker-registery',[UserController::class, 'createSeeker'])->name('create.seeker')->middleware(AuthCheck::class);
 Route::post('/seeker-registery',[UserController::class, 'storeSeeker'])->name('store.seeker');
 
-Route::get('/employer-registery',[UserController::class, 'createEmployer'])->name('create.employer');
+Route::get('/employer-registery',[UserController::class, 'createEmployer'])->name('create.employer')->middleware(AuthCheck::class);
 Route::post('/employer-registery',[UserController::class, 'storeEmployer'])->name('store.employer');
 
-Route::get('/login',[UserController::class,'login'])->name('login');
+Route::get('/login',[UserController::class,'login'])->name('login')->middleware(AuthCheck::class);
 Route::post('/login',[UserController::class,'postLogin'])->name('postLogin');
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
