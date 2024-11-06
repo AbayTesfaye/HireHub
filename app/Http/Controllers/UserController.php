@@ -86,6 +86,10 @@ class UserController extends Controller
     return view('profile.index');
  }
 
+ public function seekerProfile(){
+    return view('seeker.profile');
+ }
+
  public function update(Request $request){
       if($request->hasFile('profile_pic')){
         $imagepath = $request->file('profile_pic')->store('profile','public');
