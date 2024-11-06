@@ -67,7 +67,11 @@ class UserController extends Controller
 
     $credantials = $request->only('email','password');
     if(Auth::attempt($credantials)){
-        return redirect()->intended('dashboard');
+        if(auth()->user()->user_type === 'Employer'){
+            return redirect()->to('dashboard');
+        }else {
+            return redirect()->to('/');
+        }
     }
 
     return "Wrong email or Password";

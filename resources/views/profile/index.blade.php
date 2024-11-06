@@ -11,7 +11,8 @@
                     <label for="logo">Logo</label>
                     <input type="file" name="profile_pic" id="logo" class="form-control">
                     @if (Auth::user()->profile_pic)
-                        <img src="{{ Storage::url(auth()->user()->profile_pic) }}" alt="userProfile" width="150px">
+                        <img src="{{ Storage::url(auth()->user()->profile_pic) }}" alt="userProfile" width="150"
+                            class="mt-3">
                     @endif
                 </div>
                 <div class="form-group">
