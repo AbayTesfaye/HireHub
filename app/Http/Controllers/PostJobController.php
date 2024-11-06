@@ -75,6 +75,7 @@ class PostJobController extends Controller
     }
 
      public function delete($id){
-
+        Listing::find($id)->delete();
+        return back()->with('success','Your job post has been successfully deleted');
      }
 }

@@ -7,6 +7,9 @@
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
                     Your Jobs
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">{{ Session::get('success') }}</div>
+                    @endif
                 </div>
                 <div class="card-body">
                     <table id="datatablesSimple">
@@ -36,10 +39,10 @@
                                             data-bs-target="#deleteModal-{{ $job->id }}">Delete</a></td>
                                 </tr>
                                 <!-- Modal -->
-                                <form action="{{ route('job.delete') }}" method="POST">@csrf
-                                    @method('DELETE')
-                                    <div class="modal fade" id="deleteModal-{{ $job->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal-{{ $job->id }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <form action="{{ route('job.delete', [$job->id]) }}" method="POST">@csrf
+                                        @method('DELETE')
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -55,8 +58,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
