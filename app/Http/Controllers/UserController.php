@@ -89,5 +89,7 @@ class UserController extends Controller
       }
 
       User::find(auth()->user()->id)->update($request->except('profile_pic'));
+
+      return back()->with('success','Your profile has been updated successfully');
  }
 }
